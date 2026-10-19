@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instagram-style loading page with dynamic animations">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <!-- Animated background particles -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Main logo container -->
+        <div class="logo-container" id="logoContainer">
+            <!-- Instagram icon SVG -->
+            <div class="logo-icon" id="logoIcon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="igGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#feda75" />
+                            <stop offset="20%" style="stop-color:#fa7e1e" />
+                            <stop offset="40%" style="stop-color:#d62976" />
+                            <stop offset="60%" style="stop-color:#962fbf" />
+                            <stop offset="100%" style="stop-color:#4f5bd5" />
+                        </linearGradient>
+                        <linearGradient id="igGradientBg" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#feda75;stop-opacity:0.15" />
+                            <stop offset="20%" style="stop-color:#fa7e1e;stop-opacity:0.15" />
+                            <stop offset="40%" style="stop-color:#d62976;stop-opacity:0.15" />
+                            <stop offset="60%" style="stop-color:#962fbf;stop-opacity:0.15" />
+                            <stop offset="100%" style="stop-color:#4f5bd5;stop-opacity:0.15" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Rounded square -->
+                    <rect x="8" y="8" width="84" height="84" rx="22" ry="22"
+                          fill="none" stroke="url(#igGradient)" stroke-width="6"
+                          class="svg-rect"/>
+                    <!-- Circle -->
+                    <circle cx="50" cy="50" r="20" fill="none" stroke="url(#igGradient)" 
+                            stroke-width="5" class="svg-circle"/>
+                    <!-- Dot -->
+                    <circle cx="73" cy="27" r="5.5" fill="url(#igGradient)" class="svg-dot"/>
+                </svg>
+            </div>
+
+            <!-- Glow ring -->
+            <div class="glow-ring"></div>
+        </div>
+
+        <!-- Loading progress bar -->
+        <div class="progress-wrapper" id="progressWrapper">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Loading text -->
+        <div class="loading-text" id="loadingText">
+            <span class="dot-1">.</span>
+            <span class="dot-2">.</span>
+            <span class="dot-3">.</span>
+        </div>
+
+        <!-- Bottom branding -->
+        <div class="bottom-branding" id="bottomBranding">
+            <span class="from-text">from</span>
+            <div class="meta-logo">
+                <svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" class="meta-svg">
+                    <defs>
+                        <linearGradient id="metaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#0668E1" />
+                            <stop offset="50%" style="stop-color:#0080FB" />
+                            <stop offset="100%" style="stop-color:#00A3FF" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Meta infinity symbol -->
+                    <path d="M40 50 C40 30, 60 20, 70 35 C75 42, 80 50, 85 50 C95 50, 95 35, 85 25 C75 15, 60 15, 50 30 C40 15, 25 15, 15 25 C5 35, 5 50, 15 50 C20 50, 25 42, 30 35 C40 20, 60 30, 60 50 C60 70, 40 80, 30 65 C25 58, 20 50, 15 50 C5 50, 5 65, 15 75 C25 85, 40 85, 50 70 C60 85, 75 85, 85 75 C95 65, 95 50, 85 50 C80 50, 75 58, 70 65 C60 80, 40 70, 40 50Z"
+                          fill="url(#metaGradient)" transform="translate(0, 0) scale(0.9)" class="meta-infinity"/>
+                    <!-- Meta text -->
+                    <text x="115" y="70" font-family="Inter, sans-serif" font-size="55" 
+                          font-weight="600" fill="url(#metaGradient)" letter-spacing="-1">
+                        Meta
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content (revealed after loading) -->
+    <div class="main-content" id="mainContent">
+        <div class="app-header">
+            <div class="header-inner">
+                <h1 class="app-title">Instagram</h1>
+                <div class="header-icons">
+                    <div class="icon-btn" id="heartIcon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <div class="icon-btn" id="dmIcon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stories bar -->
+        <div class="stories-bar" id="storiesBar">
+            <div class="story-item your-story">
+                <div class="story-ring no-ring">
+                    <div class="story-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <span>+</span>
+                    </div>
+                </div>
+                <span class="story-name">Your story</span>
+            </div>
+        </div>
+
+        <!-- Feed -->
+        <div class="feed" id="feed"></div>
+
+        <!-- Bottom nav -->
+        <div class="bottom-nav">
+            <div class="nav-item active" id="navHome">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
+            </div>
+            <div class="nav-item" id="navSearch">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+            </div>
+            <div class="nav-item" id="navReels">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <line x1="17" y1="2" x2="17" y2="22"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <line x1="2" y1="7" x2="7" y2="7"/>
+                    <line x1="2" y1="17" x2="7" y2="17"/>
+                    <line x1="17" y1="7" x2="22" y2="7"/>
+                    <line x1="17" y1="17" x2="22" y2="17"/>
+                </svg>
+            </div>
+            <div class="nav-item" id="navShop">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+            </div>
+            <div class="nav-item" id="navProfile">
+                <div class="profile-avatar-small"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Viewer Overlay -->
+    <div class="story-viewer" id="storyViewer">
+        <div class="story-viewer-backdrop" id="storyViewerBackdrop"></div>
+        <div class="story-viewer-container" id="storyViewerContainer">
+            <!-- Progress bars -->
+            <div class="story-progress-bar" id="storyProgressBar"></div>
+            <!-- Story header -->
+            <div class="story-viewer-header">
+                <div class="story-viewer-user" id="storyViewerUser">
+                    <div class="story-viewer-avatar" id="storyViewerAvatar"></div>
+                    <span class="story-viewer-username" id="storyViewerUsername"></span>
+                    <span class="story-viewer-time">2h</span>
+                </div>
+                <div class="story-viewer-close" id="storyViewerClose">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </div>
+            </div>
+            <!-- Story content -->
+            <div class="story-viewer-content" id="storyViewerContent"></div>
+            <!-- Story navigation zones -->
+            <div class="story-nav-prev" id="storyNavPrev"></div>
+            <div class="story-nav-next" id="storyNavNext"></div>
+            <!-- Story footer -->
+            <div class="story-viewer-footer">
+                <div class="story-reply-input">
+                    <input type="text" placeholder="Send message" id="storyReplyInput">
+                </div>
+                <div class="story-footer-actions">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page Overlay -->
+    <div class="profile-overlay" id="profileOverlay">
+        <div class="profile-page">
+            <!-- Profile header -->
+            <div class="profile-header-bar">
+                <div class="profile-back" id="profileBack">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </div>
+                <span class="profile-header-username" id="profileHeaderUsername"></span>
+                <div class="profile-header-menu">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/>
+                    </svg>
+                </div>
+            </div>
+            <!-- Profile info -->
+            <div class="profile-info-section">
+                <div class="profile-top-row">
+                    <div class="profile-avatar-large" id="profileAvatarLarge"></div>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="profilePosts">0</span>
+                            <span class="stat-label">Posts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="profileFollowers">0</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="profileFollowing">0</span>
+                            <span class="stat-label">Following</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-bio">
+                    <div class="profile-display-name" id="profileDisplayName"></div>
+                    <div class="profile-bio-text" id="profileBioText"></div>
+                </div>
+                <div class="profile-action-buttons">
+                    <button class="profile-btn follow-btn" id="profileFollowBtn">Follow</button>
+                    <button class="profile-btn message-btn">Message</button>
+                </div>
+            </div>
+            <!-- Profile grid tabs -->
+            <div class="profile-tabs">
+                <div class="profile-tab active" id="profileTabGrid">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                        <rect x="1" y="1" width="6.5" height="6.5" rx="1"/>
+                        <rect x="8.75" y="1" width="6.5" height="6.5" rx="1"/>
+                        <rect x="16.5" y="1" width="6.5" height="6.5" rx="1"/>
+                        <rect x="1" y="8.75" width="6.5" height="6.5" rx="1"/>
+                        <rect x="8.75" y="8.75" width="6.5" height="6.5" rx="1"/>
+                        <rect x="16.5" y="8.75" width="6.5" height="6.5" rx="1"/>
+                        <rect x="1" y="16.5" width="6.5" height="6.5" rx="1"/>
+                        <rect x="8.75" y="16.5" width="6.5" height="6.5" rx="1"/>
+                        <rect x="16.5" y="16.5" width="6.5" height="6.5" rx="1"/>
+                    </svg>
+                </div>
+                <div class="profile-tab" id="profileTabReels">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                        <polygon points="10 8 16 12 10 16 10 8"/>
+                    </svg>
+                </div>
+                <div class="profile-tab" id="profileTabTagged">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+            </div>
+            <!-- Profile grid -->
+            <div class="profile-grid" id="profileGrid"></div>
+        </div>
+    </div>
+
+    <!-- Chat Overlay -->
+    <div class="chat-overlay" id="chatOverlay">
+        <div class="chat-page">
+            <!-- Chat header -->
+            <div class="chat-header">
+                <div class="chat-back" id="chatBack">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </div>
+                <div class="chat-user-info" id="chatUserInfo">
+                    <div class="chat-avatar" id="chatAvatar"></div>
+                    <div class="chat-user-details">
+                        <span class="chat-username" id="chatUsername"></span>
+                        <span class="chat-status" id="chatStatus">Active now</span>
+                    </div>
+                </div>
+                <div class="chat-header-actions">
+                    <div class="chat-header-btn">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                    </div>
+                    <div class="chat-header-btn">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="23 7 16 12 23 17 23 7"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat messages -->
+            <div class="chat-messages" id="chatMessages"></div>
+
+            <!-- Typing indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-avatar" id="typingAvatar"></div>
+                <div class="typing-bubble">
+                    <div class="typing-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat input -->
+            <div class="chat-input-area">
+                <div class="chat-input-wrapper">
+                    <button class="chat-camera-btn" id="chatCameraBtn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                    </button>
+                    <input type="text" placeholder="Message..." id="chatInput" autocomplete="off">
+                    <button class="chat-send-btn" id="chatSendBtn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
